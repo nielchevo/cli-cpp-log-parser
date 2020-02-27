@@ -13,8 +13,7 @@ int main(int argc, const char* argv[])
 		printf("%d - %s\n", i, argv[i]);
 	}
 
-	Logger::GetInstance();
-
+	Logger::GetInstance()->readFile(argv[1], argv[4]);
 
 	return 0;
 }

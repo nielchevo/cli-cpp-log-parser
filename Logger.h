@@ -6,6 +6,16 @@
 #include <sstream>
 #include <fstream>
 
+
+struct lineContent {
+    std::string address;
+    std::string auth;
+    std::string dateUTC;
+    std::string APImethod;
+    std::string httpcode;
+    std::string byteSize;
+};
+
 class Logger
 {
 private:

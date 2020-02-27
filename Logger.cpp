@@ -27,6 +27,15 @@ int Logger::readFile(const char* nMin, const char* nFilename)
 		std::cout << "failed to read file input ";
 		return 0;
 	}
+	
+	std::string parseLine;
+
+	while (!tInputFile.eof())
+	{
+		std::getline(tInputFile, parseLine);
+
+		std::cout << parseLine.c_str() << std::endl;
+	}
 
 	tInputFile.close();
 
