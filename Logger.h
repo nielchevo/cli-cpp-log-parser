@@ -7,8 +7,15 @@
 #include <fstream>
 #include <stack>
 #include <vector>
+#include <iomanip>
+#include <ctime>
+#include <chrono>
+
+#define BOOST_DATE_TIME_NO_LIB
+#include <boost/date_time.hpp>
 
 struct lineContent {
+    
     std::string address;
     std::string auth;
     std::string name;
@@ -19,6 +26,9 @@ struct lineContent {
     std::string http_ver;
     std::string http_code;
     std::string byteSize;
+
+    std::string lineStr;
+    time_t interval;
 };
 
 class Logger
@@ -26,7 +36,7 @@ class Logger
 private:
     static Logger* m_instance;
 
-    unsigned int m_interval;
+    int m_interval;
     const char* m_filename;
     std::stack<lineContent> m_lineStack;
 
@@ -34,6 +44,8 @@ private:
     ~Logger();
 
     lineContent parserLine(std::string nLine);
+    
+    time_t parseDateTime(std::string dateTime, std::string nUTC);
 
 public:
     static Logger* GetInstance();
