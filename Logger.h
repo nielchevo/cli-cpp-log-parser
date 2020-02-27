@@ -5,14 +5,19 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-
+#include <stack>
+#include <vector>
 
 struct lineContent {
     std::string address;
     std::string auth;
+    std::string name;
     std::string dateUTC;
-    std::string APImethod;
-    std::string httpcode;
+    std::string timezone;
+    std::string http_method;
+    std::string api_url;
+    std::string http_ver;
+    std::string http_code;
     std::string byteSize;
 };
 
@@ -23,13 +28,17 @@ private:
 
     unsigned int m_interval;
     const char* m_filename;
+    std::stack<lineContent> m_lineStack;
 
     Logger();
     ~Logger();
 
+    lineContent parserLine(std::string nLine);
+
 public:
     static Logger* GetInstance();
 
+    void printStack();
     int readFile(const char* nMin, const char* nFile);
 };
 
